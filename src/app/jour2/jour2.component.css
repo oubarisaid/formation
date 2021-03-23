@@ -1,0 +1,23 @@
+.border {
+  border: brown 10px solid;
+}
+
+.first {
+  color: blue;
+}
+
+.last {
+  color: red;
+}
+
+.even {
+  background-color: rgb(196, 192, 192);
+}
+
+.odd {
+  background-color: rgb(114, 106, 106);
+}
+
+.btnRemove {
+  margin-left: 50px;
+}

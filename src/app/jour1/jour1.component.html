@@ -1,0 +1,38 @@
+<div id="title">{{ title }}</div>
+<br /><br />
+
+<input type="text" #toto />
+{{ toto.value }}
+<button (click)="toto.focus()">FOCUS</button>
+<button (click)="changeTextDefaut(toto.value)">Envoyer</button>
+
+<p>{{ person?.name }}</p>
+<app-books></app-books>
+<input type="text" [value]="defaut" />
+<br /><br />
+<select>
+  <option>Option1</option>
+  <option>Option2</option>
+  <option>Option3</option>
+  <option [selected]="isSelected">Option4</option>
+  <option>Option5</option>
+  <option>Option6</option>
+  <option>Option7</option>
+  <option>Option8</option>
+</select>
+<br /><br />
+<div [hidden]="isHidden">Je suis une DIV</div>
+<br /><br />
+<p [style.color]="foreground">Texte avec une couleur</p>
+<img [src]="url" width="100" />
+<br /><br />
+<button (click)="showAlert()">CLIQUER ICI</button>
+<br /><br />
+<button (click)="changeSelected()">Change Selected</button>
+<br /><br />
+<div class="effet" (click)="parent()">
+  PARENT
+  <div (click)="enfant($event)">ENFANT</div>
+</div>
+<br /><br />
+<textarea (keydown.shift.space)="onSpacePress()" cols="30" rows="10"></textarea>

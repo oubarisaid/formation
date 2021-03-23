@@ -1,0 +1,106 @@
+{{ books | slice: 0:2 | json }}
+<p>{{ 12345 | number: "6.2" }}</p>
+<p>{{ 0.8 | percent }}</p>
+<p>{{ "2021-09-21 08:16" | date: "longDate" }}</p>
+
+<p>{{ asyncGreeting | async }}</p>
+
+<p>{{ "2020-09-21 08:16" | fromNow }}</p>
+<!-- <ng-template [ngIf]="isVisible">
+  <div
+    [ngClass]="{ border: isBorder }"
+    [ngStyle]="{
+      'max-width.px': maxWidth,
+      'height.px': maxHeight,
+      'background-color': bgColor,
+      color: color
+    }"
+  >
+    {{ texte }}
+  </div>
+</ng-template> -->
+
+<div
+  *ngIf="isVisible; else vide"
+  [ngClass]="{ border: isBorder }"
+  [ngStyle]="{
+    'max-width.px': maxWidth,
+    'height.px': maxHeight,
+    'background-color': bgColor,
+    color: color
+  }"
+>
+  {{ texte }}
+</div>
+
+<ng-template #vide>LA DIV EST CACHEE<br /><br /></ng-template>
+
+<input type="text" placeholder="height" #height />
+<input type="text" placeholder="width" #width />
+<input type="text" placeholder="text" #text />
+<select #border>
+  <option value="true">TRUE</option>
+  <option value="false">FALSE</option>
+</select>
+<select #visible>
+  <option value="true">TRUE</option>
+  <option value="false">FALSE</option>
+</select>
+<button
+  (click)="
+    changeDiv(
+      height.value,
+      width.value,
+      text.value,
+      border.value,
+      visible.value
+    )
+  "
+>
+  VALIDER
+</button>
+<br /><br />
+<div [ngSwitch]="books.length">
+  <p *ngSwitchCase="0">Le tableau est vide</p>
+  <p *ngSwitchCase="1">Le tableau contient 1 élément</p>
+  <p *ngSwitchCase="2">Le tableau contient 2 éléments</p>
+  <p *ngSwitchCase="3">Le tableau contient 3 éléments</p>
+  <p *ngSwitchDefault>Le tableau contient plus de 3 éléments</p>
+</div>
+<div
+  *ngFor="
+    let book of books | slice: -2;
+    let e = even;
+    let o = odd;
+    let f = first;
+    let l = last
+  "
+>
+  <div [ngClass]="{ first: f, last: l, even: e, odd: o }" *ngIf="book.actif">
+    {{ book.auteur | uppercase }} {{ book.titre | lowercase }}
+    {{ book.pages }}pages
+    <button class="btnRemove" (click)="removeElement(book.id)">
+      Supprimer
+    </button>
+  </div>
+</div>
+<input type="text" placeholder="auteur" #auteur />
+<input type="text" placeholder="titre" #titre />
+<input type="text" placeholder="nombre de pages" #pages />
+<select #actif>
+  <option value="true">true</option>
+  <option value="false">false</option>
+</select>
+<button
+  (click)="addElement(auteur.value, titre.value, pages.value, actif.value)"
+>
+  Ajouter
+</button>
+<br /><br />
+<input type="text" #textLetters />
+<select #minmaj>
+  <option value="min">Min</option>
+  <option value="maj">Maj</option>
+</select>
+<button (click)="textLetters.focus()">Transformer</button>
+{{ textLetters.value | letters: minmaj.value }}

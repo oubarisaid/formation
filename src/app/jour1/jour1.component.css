@@ -1,0 +1,17 @@
+div#title {
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.effet {
+  background-color: rgb(36, 106, 187);
+  width: 150px;
+  height: 150px;
+}
+
+.effet div {
+  background-color: green;
+  width: 80px;
+  height: 80px;
+}
